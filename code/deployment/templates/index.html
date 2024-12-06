@@ -84,6 +84,12 @@
             // Set the min date to current date and max date to one year from now
             dateInput.min = now.toISOString().slice(0, 16);
             dateInput.max = nextYear.toISOString().slice(0, 16);
+
+            // Retain date value if previously set
+            const previousDate = "{{ request.form.get('date', '') }}";
+            if (previousDate) {
+                dateInput.value = previousDate;
+            }
         });
     </script>
 </head>
@@ -94,7 +100,7 @@
         <form method="POST">
             <label for="city">City:</label>
             <select id="city" name="city" required>
-                <option value="Delhi">Delhi</option>
+                <option value="Delhi" {% if request.form.get('city')=='Delhi' %}selected{% endif %}>Delhi</option>
             </select>
 
             <label for="date">Date:</label>
