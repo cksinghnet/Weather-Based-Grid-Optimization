@@ -1,3 +1,6 @@
 pyspark==3.5.0
 numpy
 pandas
+dill==0.3.9
+flask
+flask_cors
